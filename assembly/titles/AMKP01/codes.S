@@ -5,4 +5,5 @@
 .equiv switchFOVAtCommand.asm, static.address + 0x18 # 4b
 .equiv moonjump.asm, static.address + 0x1C # 4b
 .equiv rapidfire.asm, static.address + 0x20 # 4b
-.equiv aimbot.asm, static.address + 0x24 # ?b
+.equiv aimbot.asm, static.address + 0x24 # 8b
+.equiv modMenu.asm, static.address + 0x2C # ?b

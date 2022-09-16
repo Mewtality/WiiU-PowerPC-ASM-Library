@@ -155,3 +155,18 @@
 		lwz r12, 0x50 (%a3)
 		lwz r12, 0x38 (r12)
 	.endm
+
+	.macro requestDialogPage loc loc2
+		bl \loc
+		mflr %a3
+		bl \loc2
+		mflr %a4
+		bl _printDialog
+	.endm
+
+	.macro string name string
+\name:
+		blrl
+		.byte \string
+		.align 2
+	.endm

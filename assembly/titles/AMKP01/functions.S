@@ -4593,6 +4593,7 @@
 	.equiv ui_Page_Dialog_open, 0x0E73FD58
 	.equiv ui_Page_Dialog_close, 0x0E74003C
 	.equiv ui_Page_Dialog_toScene, 0x0E7401CC
+	.equiv ui_Page_Dialog_isClose, 0x0E740214
 	.equiv ui_Page_Dialog_setInput, 0x0E74101C
 	.equiv ui_Page_Dialog_setButtonMessage, 0x0E7410FC
 	.equiv ui_Page_Dialog_setTeamButtonMessage, 0x0E7412BC

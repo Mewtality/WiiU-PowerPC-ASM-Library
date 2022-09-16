@@ -224,7 +224,7 @@
 		sysCall(0x2500)/* KernelCopyData */, "mr %a4, %a3; lis %a3, \to|0x80000000@h; ori %a3, %a3, \to|0x80000000@l; li %a5, \length"
 	.endm
 
-	.macro dereference source, depth1="null", depth2="null", depth3="null", depth4="null"
+	.macro dereference source, depth1="null", depth2="null", depth3="null", depth4="null", depth5="null", depth6="null"
 	dereference.source = \source
 	dereference.source.16high = dereference.source >> 0x10
 	dereference.source.16low = dereference.source % 0x10000
@@ -258,6 +258,18 @@
 
 	.if \depth4 != null
 		lwz r12, \depth4 (r12)
+	.else
+	.exitm
+	.endif
+
+	.if \depth5 != null
+		lwz r12, \depth5 (r12)
+	.else
+	.exitm
+	.endif
+
+	.if \depth6 != null
+		lwz r12, \depth6 (r12)
 	.else
 	.exitm
 	.endif
