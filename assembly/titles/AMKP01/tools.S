@@ -38,23 +38,9 @@
 	.equiv SHAKE_LEFT, 0x04000000
 	.equiv SHAKE_RIGHT, 0x08000000
 
-	# Common Offsets
-	.equiv UIRaceItem.matrix.scale.X, 0x4C
-	.equiv UIRaceItem.matrix.scale.Y, 0x50
-	.equiv UIRaceItem.visibility, 0x54
-	.equiv UIRaceItem.matrix.rotate.X, 0x6C
-	.equiv UIRaceItem.matrix.rotate.Y, 0x58
-	.equiv UIRaceItem.matrix.skew.X, 0x5C
-	.equiv UIRaceItem.matrix.skew.Y, 0x68
-	.equiv UIRaceItem.matrix.translate.X, 0x64
-	.equiv UIRaceItem.matrix.translate.Y, 0x74
-	.equiv UIRaceItem.matrix.translate.Z, 0x84
-	.equiv UIRaceItem.image, 0xB4
-	.equiv UIRaceItem.image.blendRGBA.gradient.TL, 0xB8
-	.equiv UIRaceItem.image.blendRGBA.gradient.TR, 0xBC
-	.equiv UIRaceItem.image.blendRGBA.gradient.BL, 0xC0
-	.equiv UIRaceItem.image.blendRGBA.gradient.BR, 0xC4
-	.equiv UIRaceItem.image.blendMode, 0xC8
+	# Macro Flags
+	prepareDialogPage.reg = null
+	string.flag = false
 
 	# Macros
 	.macro isRaceReady loc
@@ -150,23 +136,64 @@
 		call("ui_Page_Race_findWindowByKartIndex"), "mr %a4, %a3; mr %a3, r12"
 	.endm
 
-	.macro getUIRaceItem null
-		lwz %a3, 0x18 (%a3)
-		lwz r12, 0x50 (%a3)
-		lwz r12, 0x38 (r12)
+	.macro prepareDialogPage reg
+		prepareDialogPage.reg = \reg
+
+		dereference("GUIManagement"), 0x10, 0x4
+		lwz \reg, 0x1C (r12)
 	.endm
 
-	.macro requestDialogPage loc loc2
+	.macro isDialogPageClosed loc
+	.if prepareDialogPage.reg == null
+	.err
+	.endif
+		call("ui_Page_Dialog_isClose"), "mr %a3, prepareDialogPage.reg"
+		cmpwi %a3, 0
+		beq \loc
+	.endm
+
+	.macro isDialogPageOpen loc
+	.if prepareDialogPage.reg == null
+	.err
+		call("ui_Page_Dialog_isClose"), "mr %a3, prepareDialogPage.reg"
+		cmpwi %a3, 0
+		bne \loc
+	.endm
+
+	.macro requestDialogPage null
+		call("ui_Page_Dialog_in"), "mr %a3, prepareDialogPage.reg"
+	.endm
+
+	.macro printDialogBodyText null string
+		\string
+		lwz r12, 0x5AC (prepareDialogPage.reg)
+		lwz %a4, 0x5C (r12)
+		li %a5, null
+		li %a6, true
+		call("ui_RegisterScalableFontText")
+	.endm
+
+	.macro printDialogButtonText null string
+		\string
+		lwz r12, 0x5CC (prepareDialogPage.reg)
+		lwz %a4, 0xF4 (r12)
+		li %a5, null
+		li %a6, true
+		call("ui_RegisterScalableFontText")
+	.endm
+
+	.macro getString loc
 		bl \loc
-		mflr %a3
-		bl \loc2
-		mflr %a4
-		bl _printDialog
+		mfspr %a3, %lr
 	.endm
 
-	.macro string name string
+	.macro string encoding name string start end
+	.if string.flag == false
+		b _start
+	.endif
+	string.flag = true
 \name:
 		blrl
-		.byte \string
-		.align 2
+		.incbin "\string", \encoding * \start, \encoding * \end
+		.align \encoding
 	.endm
