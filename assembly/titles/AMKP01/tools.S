@@ -164,7 +164,7 @@
 		call("ui_Page_Dialog_in"), "mr %a3, prepareDialogPage.reg"
 	.endm
 
-	.macro printDialogBodyText null string
+	.macro printDialogBodyText string
 		\string
 		lwz r12, 0x5AC (prepareDialogPage.reg)
 		lwz %a4, 0x5C (r12)
@@ -173,7 +173,7 @@
 		call("ui_RegisterScalableFontText")
 	.endm
 
-	.macro printDialogButtonText null string
+	.macro printDialogButtonText string
 		\string
 		lwz r12, 0x5CC (prepareDialogPage.reg)
 		lwz %a4, 0xF4 (r12)
@@ -187,13 +187,13 @@
 		mfspr %a3, %lr
 	.endm
 
-	.macro string encoding name string start end
+	.macro string encoding name string start length
 	.if string.flag == false
 		b _start
 	.endif
 	string.flag = true
 \name:
 		blrl
-		.incbin "\string", \encoding * \start, \encoding * \end
+		.incbin "\string", \encoding * \start, \encoding * \length
 		.align \encoding
 	.endm
