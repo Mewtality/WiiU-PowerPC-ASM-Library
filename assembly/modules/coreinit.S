@@ -3,7 +3,7 @@
 * Author: Mewtality
 * Date: 2022-09-06 20:39:55
 * YouTube: https://www.youtube.com/c/Mewtality
-* Discord: Mewtality#0666
+* Discord: Mewtality#8315
 */
 	.equiv LiGetStackPointer, 0x010000D8
 	.equiv Loader_SaveOSContext, 0x010000E0

@@ -3,7 +3,7 @@
 * Author: Mewtality
 * Date: 2022-09-06 20:34:05
 * YouTube: https://www.youtube.com/c/Mewtality
-* Discord: Mewtality#0666
+* Discord: Mewtality#8315
 */
 	.equiv section_rodata, 0x10000000
 	.equiv section_data, 0x101805E0

@@ -3,7 +3,7 @@
 * Author: Mewtality
 * Date: 2022-09-08 13:02:51
 * YouTube: https://www.youtube.com/c/Mewtality
-* Discord: Mewtality#0666
+* Discord: Mewtality#8315
 */
 
 	.include "C:/devkitPro/devkitPPC/assembly/common.S"

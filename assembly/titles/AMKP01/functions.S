@@ -3,7 +3,7 @@
 * Author: Mewtality
 * Date: 2022-09-06 20:33:35
 * YouTube: https://www.youtube.com/c/Mewtality
-* Discord: Mewtality#0666
+* Discord: Mewtality#8315
 */
 	.equiv object_AIAutoSteer_reset, 0x0E180E58
 	.equiv object_AIAutoSteer_getTargetPos, 0x0E180F50
