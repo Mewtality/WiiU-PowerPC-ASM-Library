@@ -33,10 +33,10 @@
 	.equiv RIGHT_STICK_PRESS, 0x00000040
 	.equiv HOME, 0x00000100
 	.equiv TOUCH_SCREEN, 0x00008000
-	.equiv SHAKE_UP, 0x01000000
-	.equiv SHAKE_DOWN, 0x02000000
-	.equiv SHAKE_LEFT, 0x04000000
-	.equiv SHAKE_RIGHT, 0x08000000
+	.equiv FLICK_UP, 0x01000000
+	.equiv FLICK_DOWN, 0x02000000
+	.equiv FLICK_LEFT, 0x04000000
+	.equiv FLICK_RIGHT, 0x08000000
 
 	# Macro Flags
 	prepareDialogPage.reg = null
