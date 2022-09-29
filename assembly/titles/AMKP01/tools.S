@@ -114,6 +114,15 @@
 		stb %a0, \flag@l (r31)
 	.endm
 
+	.macro isSent termination flag
+		lis r12, \flag@h
+		lbz %a0, \flag@l (r12)
+		cmpwi %a0, 0
+		bne \termination
+		li %a0, 1
+		stb %a0, \flag@l (r12)
+	.endm
+
 	.macro resetFlag loc
 		li %a0, 0
 		stb %a0, \loc@l (r31)
