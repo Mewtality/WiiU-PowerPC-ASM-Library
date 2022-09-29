@@ -6,4 +6,5 @@
 .equiv moonjump.asm, static.address + 0x1C # 4b
 .equiv rapidfire.asm, static.address + 0x20 # 4b
 .equiv aimbot.asm, static.address + 0x24 # 8b
-.equiv dialogBoxTest.asm, static.address + 0x2C # ?b
+.equiv homeMenuLocker.asm, static.address + 0x2C # 4b
+.equiv dialogBoxTest.asm, static.address + 0x30 # ?b

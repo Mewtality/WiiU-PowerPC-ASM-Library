@@ -1,7 +1,7 @@
 /*
 * File: tools.S
 * Author: Mewtality
-* Date: 2022-09-08 13:02:51
+* Date: Thursday, September 29, 2022 @ 12:59:30 PM
 * YouTube: https://www.youtube.com/c/Mewtality
 * Discord: Mewtality#8315
 */
@@ -62,7 +62,7 @@
 	.endm
 
 	.macro isRaceState loc
-		call("object_IsRaceState")
+		call("object::IsRaceState()")
 		cmpwi %a3, 0
 		beq \loc
 	.endm
@@ -120,20 +120,20 @@
 	.endm
 
 	.macro getDRCPlayer loc
-		call("object_RaceIndex__DRCPlayer2Kart")
+		call("object::RaceIndex_::DRCPlayer2Kart()")
 		cmplwi %a3, 0xB
 		bgt \loc
 	.endm
 
 	.macro getDRCKartUnit loc
 		getDRCPlayer(\loc)
-		call("object_KartInfoProxy_getKartUnit")
+		call("object::KartInfoProxy::getKartUnit()")
 	.endm
 
 	.macro getDRCUI loc
 		getDRCPlayer(\loc)
 		dereference("GUIManagement"), 0x10, 0x4, 0x1A0
-		call("ui_Page_Race_findWindowByKartIndex"), "mr %a4, %a3; mr %a3, r12"
+		call("ui::Page_Race::findWindowByKartIndex()"), "mr %a4, %a3; mr %a3, r12"
 	.endm
 
 	.macro prepareDialogPage reg
@@ -147,7 +147,7 @@
 	.if prepareDialogPage.reg == null
 	.err
 	.endif
-		call("ui_Page_Dialog_isClose"), "mr %a3, prepareDialogPage.reg"
+		call("ui::Page_Dialog::isClose()"), "mr %a3, prepareDialogPage.reg"
 		cmpwi %a3, 0
 		beq \loc
 	.endm
@@ -155,13 +155,13 @@
 	.macro isDialogPageOpen loc
 	.if prepareDialogPage.reg == null
 	.err
-		call("ui_Page_Dialog_isClose"), "mr %a3, prepareDialogPage.reg"
+		call("ui::Page_Dialog::isClose()"), "mr %a3, prepareDialogPage.reg"
 		cmpwi %a3, 0
 		bne \loc
 	.endm
 
 	.macro requestDialogPage null
-		call("ui_Page_Dialog_in"), "mr %a3, prepareDialogPage.reg"
+		call("ui::Page_Dialog::in_()"), "mr %a3, prepareDialogPage.reg"
 	.endm
 
 	.macro printDialogBodyText string
@@ -170,7 +170,7 @@
 		lwz %a4, 0x5C (r12)
 		li %a5, null
 		li %a6, true
-		call("ui_RegisterScalableFontText")
+		call("ui::RegisterScalableFontText()")
 	.endm
 
 	.macro printDialogButtonText string
@@ -179,7 +179,7 @@
 		lwz %a4, 0xF4 (r12)
 		li %a5, null
 		li %a6, true
-		call("ui_RegisterScalableFontText")
+		call("ui::RegisterScalableFontText()")
 	.endm
 
 	.macro getString loc

@@ -1,7 +1,7 @@
 /*
 * File: common.S
 * Author: Mewtality
-* Date: 2022-09-08 13:02:45
+* Date: Thursday, September 29, 2022 @ 12:59:30 PM
 * YouTube: https://www.youtube.com/c/Mewtality
 * Discord: Mewtality#8315
 */
@@ -275,7 +275,6 @@
 	.else
 	.exitm
 	.endif
-
 	.endm
 
 	.macro push register

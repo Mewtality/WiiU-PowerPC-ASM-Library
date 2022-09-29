@@ -1,7 +1,7 @@
 /*
 * File: memMap.S
 * Author: Mewtality
-* Date: 2022-09-06 20:34:05
+* Date: Thursday, September 29, 2022 @ 12:59:30 PM
 * YouTube: https://www.youtube.com/c/Mewtality
 * Discord: Mewtality#8315
 */
@@ -25,5 +25,4 @@
 	.equiv raceKartManagement, _data + 0x7F38 # 0x1068A718
 	.equiv itemDirector, _data + 0x7F3C # 0x1068A71C
 	.equiv GUIManagement, _data + 0x9B8C # 0x1068C36C
-
 	.equiv static.address, _bss + 0x43900 # 0x106F0000
