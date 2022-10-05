@@ -92,18 +92,20 @@
 		beq \loc
 	.endm
 
-	.macro reset loc, size="0"
+	.macro reset loc, size="0", bool="false"
+	.if \bool == false
 		li %a0, 0
+	.endif
 		stw %a0, \loc@l (r31)
-		.if \size >= 1
+	.if \size >= 1
 		stw %a0, \loc+0x4@l (r31)
-		.endif
-		.if \size >= 2
+	.endif
+	.if \size >= 2
 		stw %a0, \loc+0x8@l (r31)
-		.endif
-		.if \size >= 3
-		.err
-		.endif
+	.endif
+	.if \size >= 3
+	.err
+	.endif
 	.endm
 
 	.macro setFlag termination flag

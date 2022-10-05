@@ -21,6 +21,7 @@
 	# Common Addresses
 	.equiv cameraManagement, _data + 0x820 # 0x10683000
 	.equiv raceManagement, _data + 0x7F2C # 0x1068A70C
+	.equiv courceInfoManagement, _data + 0x7F30 # 0x1068A710
 	.equiv menuManagement, _data + 0x7F58 # 0x1068A738
 	.equiv raceKartManagement, _data + 0x7F38 # 0x1068A718
 	.equiv itemDirector, _data + 0x7F3C # 0x1068A71C

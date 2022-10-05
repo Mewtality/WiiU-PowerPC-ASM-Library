@@ -8,4 +8,5 @@
 .equiv aimbot.asm, static.address + 0x24 # 8b
 .equiv homeMenuLocker.asm, static.address + 0x2C # 4b
 .equiv waterAnywhere.asm, static.address + 0x30 # 4b
-.equiv dialogBoxTest.asm, static.address + 0x34 # ?b
+.equiv teleporter.asm, static.address + 0x34 # 28b
+.equiv dialogBoxTest.asm, static.address + 0x50 # ?b
