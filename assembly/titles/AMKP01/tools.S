@@ -56,8 +56,11 @@
 	.endm
 
 	.macro isRacePaused loc
-		dereference(0x40120F1C)
-		rlwinm. r0, r12, 8, 31, 31
+		call("FUN_0E64E218:sys::SystemEngine::getEngine()")
+		lwz %a3, 0 (%a3)
+		lwz %a3, 0x200 (%a3)
+		lwz %a3, 0xCC (%a3)
+		rlwinm. %a3, %a3, 8, 31, 31
 		bne \loc
 	.endm
 

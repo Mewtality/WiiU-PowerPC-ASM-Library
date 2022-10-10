@@ -11,6 +11,9 @@
 	.equiv true, 1
 	.equiv null, -1
 
+	.equiv TV, 0
+	.equiv DRC, 1
+
 	.equiv unicode, 0x2
 
 	# Macro Flags
