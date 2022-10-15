@@ -241,12 +241,12 @@
 	.if \source != null
 		lis r12, dereference.source.16high@l
 		lwz r12, dereference.source.16low@l (r12)
+	.else
+		lwz r12, \depth1 (%a3)
 	.endif
 
-	.if \depth1 != null
+	.if \depth1 != null && \source != null
 		lwz r12, \depth1 (r12)
-	.else
-	.exitm
 	.endif
 
 	.if \depth2 != null
